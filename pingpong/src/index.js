@@ -15,9 +15,10 @@ let p2WinCount = 0
 
 
 // This is the first function initiated. It grabs each button and sets the limit.  
-
+//  I made collection because I could not iterate through HTML collection with forEach(), but I found this online.
 function startGame() {
-  document.querySelectorAll('.score-limit').forEach(button => {
+    collection = document.getElementsByClassName('btn btn-primary')
+    Array.from(collection).forEach(function (button) {
      button.addEventListener('click', e => {
       keepscore(`${parseInt(button.innerText)}`)     
      })
@@ -29,9 +30,11 @@ function startGame() {
 // This function is only initiated after a button is clicked to set the score limit. It envokes
 // all the helper methods below this one. 
 function keepscore(limit) {
-  document.querySelectorAll('.score-limit').forEach(button =>{
+  collection = document.getElementsByClassName('btn btn-primary')
+    Array.from(collection).forEach(function (button) {
     button.remove()
   })
+  document.querySelector('.choose-limit').remove()
 
   displayLimit = document.querySelector('.display-limit')
 
@@ -50,13 +53,19 @@ document.addEventListener("keyup", e => {
 // <---------------------------------HELPER METHODS----------------------------------------->
 
 function p1ScoreUp(limit){
+  clearWinnerDiv()
   p1Score += 1
-  if (p1Score == limit){
-    winnerDiv.innerText = 'Player 1 wins this set!'
+  console.log(`The difference is ${p1Score - p2Score}`)
+  if (p1Score >= limit){
+    if (p1Score - p2Score >= 2) {
+    winnerDiv.innerHTML = "<u>Player 1 wins this set!</u>"
     p1Score = 0
     p2Score = 0
     p2ScoreDiv.innerHTML = p2Score
-    winCount("player1")
+    winCount("player1")}
+    else {
+      winnerDiv.innerText = 'You must win by 2!'
+    }
   }
   p1ScoreDiv.innerHTML = p1Score
 }
@@ -67,20 +76,30 @@ function p1ScoreDown(){
 }
 
 function p2ScoreUp(limit){
+  clearWinnerDiv()
   p2Score += 1
-  if (p2Score == limit){
-    winnerDiv.innerText = 'Player 2 wins this set!'
+  if (p2Score >= limit){
+    if (p2Score - p1Score >= 2){
+    winnerDiv.innerHTML = '<u>Player 2 wins this set!</u>'
     p2Score = 0
     p1Score = 0
     p1ScoreDiv.innerHTML = p1Score
-    winCount("player2")
-  }
+    winCount("player2")}
+    else {
+      winnerDiv.innerText = 'You must win by 2!'
+     }
+  } 
   p2ScoreDiv.innerHTML = p2Score
 }
 
 function p2ScoreDown(){
   p2Score -= 1
   p2ScoreDiv.innerHTML = p2Score
+}
+
+function clearWinnerDiv() {
+  winnerDiv.innerText = ''
+
 }
 
 
