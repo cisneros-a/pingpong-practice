@@ -8,6 +8,7 @@
       <meta name="description" content="The HTML5 Herald">
       <meta name="author" content="SitePoint">
       
+       <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css" />
        <link rel="stylesheet" href="index.css" />
     
     </head>
@@ -15,12 +16,43 @@
     <body>
       <h2>Flatiron Ping-Pong</h2><br>
       <p class='display-limit'></p>
-      <button class='score-limit'>11</button>
-      <button class='score-limit'>21</button>
-      <div class='winner'> </div> <br>
+      <form class ='user-form'>
+        <fieldset>
+          <legend>Rule Set</legend>
+          <div class="form-group">
+            <label for="player1name"> Player 1 name: </label>
+            <input type="text" class="form-control col-lg-4" id="player1name" placeholder="Player 1">
+          </div>
+          <div class="form-group">
+            <label for="player2name"> Player 2 name: </label>
+            <input type="text" class="form-control col-lg-4" id="player2name" placeholder="Player 2">
+          </div>
+          <div class="form-group">
+            <label for="scoreLimit"> Score limit: </label>
+            <select class="form-control col-lg-1" id="scoreLimit">
+              <option>11</option>
+              <option>21</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="bestOf"> Best out of: </label>
+            <select class="form-control col-lg-1" id="bestOf">
+              <option>1</option>
+              <option>3</option>
+              <option>5</option>
+            </select>
+          </div>
+          </fieldset>
+          <fieldset class="form-group">
+          <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        </fieldset>
+      </form>
+      <div class='winner'> </div><u> </u> <br>
       <div id='winner-1-count'> </div>
-      <div id='winner-2-count'> </div>
-      <div class="player-1-score">0</div>
+      <div id='winner-2-count'> </div><br>
+      <div class='player1-name-score'> </div>
+      <div class="player-1-score">0</div><br>
+      <div class='player2-name-score'> </div>
       <div class="player-2-score">0</div>
 
       <script type="text/javascript" src="src/index.js"></script>
