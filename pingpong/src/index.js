@@ -11,8 +11,7 @@ let p2ScoreDiv = document.getElementsByClassName('player-2-score')[0]
 let winnerDiv = document.getElementsByClassName('winner')[0]
 let p1WinCountDiv = document.getElementById('winner-1-count')
 let p2WinCountDiv = document.getElementById('winner-2-count')
-let p1WinCount = 0
-let p2WinCount = 0
+
 
 
 // This is the first function initiated. It grabs the value from each input field and passes them
@@ -27,20 +26,24 @@ function initiateGame() {
     let p1name = document.querySelector('#player1name').value
     let p2name = document.querySelector('#player2name').value
     let scoreLimit = parseInt(document.querySelector('#scoreLimit').value)
-    keepscore(scoreLimit, p1name, p2name)
+    let bestOf = parseInt(document.querySelector('#bestOf').value)
+    
+    keepscore(scoreLimit, p1name, p2name, bestOf)
     
   }) 
    
   }
 
+  
 
 
 
 
 // This function is only initiated after a button is clicked to set the score limit. It envokes
 // all the helper methods below this one. 
-function keepscore(limit, p1name, p2name) {
+function keepscore(limit, p1name, p2name, bestOf) {
   console.log('--------------------------------------------------------')
+  console.log(bestOf)
   document.querySelector('.user-form').remove()
   
   displayLimit = document.querySelector('.display-limit')
@@ -117,6 +120,8 @@ function clearWinnerDiv() {
 
 
 // <----this function is called when a player reaches the limit and their win count goes up---->
+let p1WinCount = 0
+let p2WinCount = 0
 function winCount(winner, p1name, p2name) {
   if (winner == 'player1'){
     p1WinCount += 1
@@ -129,7 +134,7 @@ function winCount(winner, p1name, p2name) {
   }
 
   //  <-------this is like the run fuction we stored all the steps in run--------->
-  // startGame()
+ 
   initiateGame() 
   
   
